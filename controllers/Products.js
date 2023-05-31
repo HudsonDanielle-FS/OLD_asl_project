@@ -1,5 +1,8 @@
+const Products = require('../models/Products')
+
 const index = (req, res) => {
-    res.send('Products.index')
+    const products = Products.all()
+    res.json(products)
 }
 
 const form = (req, res) => {
@@ -7,19 +10,23 @@ const form = (req, res) => {
 }
 
 const show = (req, res) => {
-    res.send('Product.show')
+    const product = Products.find(req.params.id)
+    res.json(product)
 }
 
 const create = (req, res) => {
-    res.send('Product.create')
+    const product = Products.create(req.body)
+    res.json(product)
 }
 
 const update = (req, res) => {
-    res.send('Product.update')
+    const product = Products.update(req.params.id, req.body)
+    res.json(product)
 }
 
 const remove = (req, res) => {
-    res.send("Product.remove")
+    const products = Products.remove(req.params.id)
+    res.json(products)
 }
 
 module.exports = { index, form, show, create, update, remove }
